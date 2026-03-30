@@ -1,0 +1,16 @@
+import { Route, Routes } from "react-router";
+import { Layout } from "@/components/Layout";
+
+import HomePage from "@/pages/HomePage";
+import PitchPage from "@/pages/PitchPage";
+
+export function AppRouter() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/pitch" element={<PitchPage />} />
+      </Route>
+    </Routes>
+  );
+}
