@@ -378,7 +378,12 @@ export function Pitch({
       width={svgWidth}
       height={svgHeight}
       className={className}
-      style={{ display: "block", ...style }}
+      style={{
+        width: "100%",
+        height: "auto",
+        display: "block",
+        ...style,
+      }}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label="Football pitch"

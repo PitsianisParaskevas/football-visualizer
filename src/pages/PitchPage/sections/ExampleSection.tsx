@@ -19,7 +19,7 @@ const initialState: ExampleState = {
   orientation: "horizontal",
   backgroundColor: "#3f995b",
   lineColor: "#ffffff",
-  lineWidth: 0.3,
+  lineWidth: 0.6,
   showCornerArcs: true,
   showCenterCircle: true,
   showPenaltyArcs: true,
@@ -42,20 +42,19 @@ export function ExampleSection() {
 
   return (
     <section className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold text-zinc-900">Example</h2>
-        <p className="mt-1 text-sm text-zinc-600">
-          Live playground για να δοκιμάζεις τα props του Pitch component.
-        </p>
-      </div>
-
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-4 shadow-sm">
-          <div className="flex justify-center rounded-xl bg-zinc-900 p-4">
+          <div
+            className={`flex justify-center rounded-xl bg-zinc-900 p-4 transition-all duration-300 ${
+              isVertical ? "min-h-[620px]" : "min-h-[420px]"
+            }`}
+          >
             <div
-              className={
-                isVertical ? "w-full max-w-[340px]" : "w-full max-w-[760px]"
-              }
+              className={`w-full transition-all duration-300 ${
+                isVertical
+                  ? "max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[340px]"
+                  : "max-w-[520px] sm:max-w-[620px] md:max-w-[720px] lg:max-w-[820px]"
+              }`}
             >
               <Pitch
                 width={state.width}
@@ -75,12 +74,28 @@ export function ExampleSection() {
         <aside className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
           <div className="mb-4">
             <h3 className="text-base font-semibold text-zinc-900">Toolset</h3>
-            <p className="text-sm text-zinc-500">
-              Άλλαξε live τα props του field.
-            </p>
           </div>
 
           <div className="space-y-5">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-zinc-800">
+                Orientation
+              </label>
+              <select
+                value={state.orientation}
+                onChange={(e) =>
+                  update(
+                    "orientation",
+                    e.target.value as "horizontal" | "vertical",
+                  )
+                }
+                className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800"
+              >
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+              </select>
+            </div>
+
             <div>
               <label className="mb-1 block text-sm font-medium text-zinc-800">
                 Width
@@ -131,25 +146,6 @@ export function ExampleSection() {
                 className="w-full rounded-xl border border-zinc-200 px-3 py-2 text-sm text-zinc-800"
               />
               <div className="mt-1 text-xs text-zinc-500">Range: 0 έως 2</div>
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-zinc-800">
-                Orientation
-              </label>
-              <select
-                value={state.orientation}
-                onChange={(e) =>
-                  update(
-                    "orientation",
-                    e.target.value as "horizontal" | "vertical",
-                  )
-                }
-                className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800"
-              >
-                <option value="horizontal">Horizontal</option>
-                <option value="vertical">Vertical</option>
-              </select>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
