@@ -1,7 +1,9 @@
 # ⚽ Football Visualizer
 
+> **“Imagine the pitch as a coordinate system — where every movement is geometry.”**
+
 <p align="center">
-  <img src="public/images/toolset-pitch.png" width="700" />
+  <img src="public/images/geometry.png" width="700" />
 </p>
 
 A lightweight, flexible React + SVG library for building football (soccer) visualizations — lineups, formations, movements, and tactical diagrams.
