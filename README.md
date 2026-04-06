@@ -32,7 +32,7 @@ Designed with a clean API, scalable coordinate system, and interactive use cases
 > **“Structured team shapes, rendered as geometry.”**
 
 <p align="center">
-  <img src="public/images/formation.png" width="700" />
+  <img src="public/images/toolset-formation.png" width="700" />
 </p>
 
 The `FormationLayer` is a tactical overlay built on top of the core pitch system.  
