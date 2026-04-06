@@ -26,3 +26,16 @@ Designed with a clean API, scalable coordinate system, and interactive use cases
 ## 🏟️ Football Pitch
 
 ![Pitch Preview](public/images/toolset-pitch.png)
+
+## 🧠 Formation Layer
+
+> **“Structured team shapes, rendered as geometry.”**
+
+<p align="center">
+  <img src="public/images/formation.png" width="700" />
+</p>
+
+The `FormationLayer` is a tactical overlay built on top of the core pitch system.  
+It transforms football formations into visual player layouts, using consistent pitch coordinates and opinionated defaults for standard team shapes.
+
+With support for common formations, mirrored home/away layouts, and configurable marker styling, it provides a clean foundation for lineup views, tactical boards, and interactive visual tools.
