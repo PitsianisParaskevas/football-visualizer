@@ -14,6 +14,7 @@ export type PitchProps = {
   orientation?: "horizontal" | "vertical";
   className?: string;
   style?: React.CSSProperties;
+  children?: React.ReactNode;
 };
 
 type ArcProps = {
@@ -181,7 +182,6 @@ function PitchLines({
       fill="none"
       stroke={lineColor}
       strokeWidth={lineWidth}
-      vectorEffect="non-scaling-stroke"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -324,8 +324,7 @@ function GoalFrames({
     <g
       fill="none"
       stroke={lineColor}
-      strokeWidth={lineWidth * 0.9}
-      vectorEffect="non-scaling-stroke"
+      strokeWidth={lineWidth * 0.6}
       opacity={0.7}
     >
       <rect
@@ -349,7 +348,7 @@ export function Pitch({
   height = 520,
   backgroundColor = "#3f995b",
   lineColor = "#ffffff",
-  lineWidth = 2,
+  lineWidth = 0.15,
   showCornerArcs = true,
   showCenterCircle = true,
   showPenaltyArcs = true,
@@ -358,6 +357,7 @@ export function Pitch({
   orientation = "horizontal",
   className,
   style,
+  children,
 }: PitchProps) {
   const geometry = getPitchGeometry();
   const isVertical = orientation === "vertical";
@@ -422,6 +422,7 @@ export function Pitch({
             lineWidth={normalizedLineWidth}
           />
         )}
+        {children}
       </g>
     </svg>
   );

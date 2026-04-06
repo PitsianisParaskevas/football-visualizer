@@ -6,6 +6,6 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { label: "Overview", path: "/" },
   { label: "Pitch", path: "/pitch" },
-  // { label: "Players", path: "/players" },
+  { label: "Formation", path: "/formation" },
   // { label: "Animations", path: "/animations" },
 ];

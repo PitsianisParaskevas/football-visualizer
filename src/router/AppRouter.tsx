@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 
 import HomePage from "@/pages/HomePage";
 import PitchPage from "@/pages/PitchPage";
+import FormationPage from "@/pages/FormationPage";
 
 export function AppRouter() {
   return (
@@ -10,6 +11,7 @@ export function AppRouter() {
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/pitch" element={<PitchPage />} />
+        <Route path="/formation" element={<FormationPage />} />
       </Route>
     </Routes>
   );
