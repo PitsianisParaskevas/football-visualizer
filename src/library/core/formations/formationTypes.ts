@@ -1,5 +1,5 @@
 export type PitchOrientation = "horizontal" | "vertical";
-export type TeamSide = "left" | "right";
+export type TeamSide = "home" | "away";
 
 export interface PitchDimensions {
   width: number;

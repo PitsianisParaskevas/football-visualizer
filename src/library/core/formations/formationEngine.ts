@@ -47,7 +47,7 @@ export function generateFormationPositions(
 
   const halfWidth = pitch.width / 2;
   const halfHeight = pitch.height / 2;
-  const direction = side === "left" ? -1 : 1;
+  const direction = side === "home" ? -1 : 1;
 
   const xLines = getLineXPositions(
     parsed.lines.length,
