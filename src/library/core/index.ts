@@ -11,4 +11,5 @@ export type {
   ParsedFormation,
   FormationLayoutOptions,
   GeneratedPlayerPosition,
+  FormationZone,
 } from "./formations/formationTypes";

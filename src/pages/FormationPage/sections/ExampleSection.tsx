@@ -1,11 +1,19 @@
 import { useMemo, useState } from "react";
 import { Pitch, FormationLayer } from "@/library";
+import type { FormationZone } from "@/library/core";
 
 type TeamCount = 1 | 2;
 type TeamSide = "home" | "away";
 type PitchOrientation = "horizontal" | "vertical";
 
 const FORMATION_OPTIONS = ["4-3-3", "4-4-2", "4-2-3-1", "3-5-2"] as const;
+
+const ALL_ZONES: FormationZone[] = [
+  "goalkeeper",
+  "defense",
+  "midfield",
+  "attack",
+];
 
 type ExampleState = {
   teamCount: TeamCount;
@@ -15,11 +23,13 @@ type ExampleState = {
   color1: string;
   side1: TeamSide;
   markerRadius1: number;
+  visibleZones1: FormationZone[];
 
   formation2: string;
   color2: string;
   side2: TeamSide;
   markerRadius2: number;
+  visibleZones2: FormationZone[];
 };
 
 const initialState: ExampleState = {
@@ -30,11 +40,13 @@ const initialState: ExampleState = {
   color1: "#ff3b30",
   side1: "home",
   markerRadius1: 0.9,
+  visibleZones1: [...ALL_ZONES],
 
   formation2: "4-4-2",
   color2: "#007aff",
   side2: "away",
   markerRadius2: 0.9,
+  visibleZones2: [...ALL_ZONES],
 };
 
 export function ExampleSection() {
@@ -47,6 +59,37 @@ export function ExampleSection() {
     setState((prev) => ({
       ...prev,
       [key]: value,
+    }));
+  };
+
+  const toggleZone = (
+    key: "visibleZones1" | "visibleZones2",
+    zone: FormationZone,
+  ) => {
+    setState((prev) => {
+      const currentZones = prev[key];
+      const nextZones = currentZones.includes(zone)
+        ? currentZones.filter((z) => z !== zone)
+        : [...currentZones, zone];
+
+      return {
+        ...prev,
+        [key]: nextZones,
+      };
+    });
+  };
+
+  const setAllZones = (key: "visibleZones1" | "visibleZones2") => {
+    setState((prev) => ({
+      ...prev,
+      [key]: [...ALL_ZONES],
+    }));
+  };
+
+  const clearZones = (key: "visibleZones1" | "visibleZones2") => {
+    setState((prev) => ({
+      ...prev,
+      [key]: [],
     }));
   };
 
@@ -77,6 +120,7 @@ export function ExampleSection() {
                   side={state.side1}
                   pitch={pitchDimensions}
                   markerRadius={state.markerRadius1}
+                  visibleZones={state.visibleZones1}
                 />
 
                 {state.teamCount === 2 && (
@@ -86,6 +130,7 @@ export function ExampleSection() {
                     side={state.side2}
                     pitch={pitchDimensions}
                     markerRadius={state.markerRadius2}
+                    visibleZones={state.visibleZones2}
                   />
                 )}
               </Pitch>
@@ -201,6 +246,47 @@ export function ExampleSection() {
                     className="h-10 w-full cursor-pointer rounded-lg border border-zinc-200 bg-white p-1"
                   />
                 </div>
+
+                <div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <label className="block text-sm font-medium text-zinc-800">
+                      Visible zones
+                    </label>
+
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setAllZones("visibleZones1")}
+                        className="text-xs font-medium text-zinc-600 hover:text-zinc-900"
+                      >
+                        All
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => clearZones("visibleZones1")}
+                        className="text-xs font-medium text-zinc-600 hover:text-zinc-900"
+                      >
+                        None
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {ALL_ZONES.map((zone) => (
+                      <label
+                        key={zone}
+                        className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={state.visibleZones1.includes(zone)}
+                          onChange={() => toggleZone("visibleZones1", zone)}
+                        />
+                        <span className="capitalize">{zone}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -271,6 +357,47 @@ export function ExampleSection() {
                       onChange={(e) => update("color2", e.target.value)}
                       className="h-10 w-full cursor-pointer rounded-lg border border-zinc-200 bg-white p-1"
                     />
+                  </div>
+
+                  <div>
+                    <div className="mb-2 flex items-center justify-between">
+                      <label className="block text-sm font-medium text-zinc-800">
+                        Visible zones
+                      </label>
+
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setAllZones("visibleZones2")}
+                          className="text-xs font-medium text-zinc-600 hover:text-zinc-900"
+                        >
+                          All
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => clearZones("visibleZones2")}
+                          className="text-xs font-medium text-zinc-600 hover:text-zinc-900"
+                        >
+                          None
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      {ALL_ZONES.map((zone) => (
+                        <label
+                          key={zone}
+                          className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={state.visibleZones2.includes(zone)}
+                            onChange={() => toggleZone("visibleZones2", zone)}
+                          />
+                          <span className="capitalize">{zone}</span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

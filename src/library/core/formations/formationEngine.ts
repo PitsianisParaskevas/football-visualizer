@@ -1,5 +1,6 @@
 import {
   type FormationLayoutOptions,
+  type FormationZone,
   type GeneratedPlayerPosition,
   type PitchDimensions,
   type TeamSide,
@@ -25,6 +26,17 @@ function getLineXPositions(
   const step = (defensiveLineX - attackingLineX) / (lineCount - 1);
 
   return Array.from({ length: lineCount }, (_, i) => defensiveLineX - i * step);
+}
+
+function getZone(
+  role: "GK" | "OUTFIELD",
+  lineIndex: number,
+  totalLines: number,
+): FormationZone {
+  if (role === "GK") return "goalkeeper";
+  if (lineIndex === 0) return "defense";
+  if (lineIndex === totalLines - 1) return "attack";
+  return "midfield";
 }
 
 export function generateFormationPositions(
@@ -62,6 +74,7 @@ export function generateFormationPositions(
     x: direction * gkX * halfWidth,
     y: 0,
     role: "GK",
+    zone: "goalkeeper",
     lineIndex: -1,
     playerIndex: 0,
   });
@@ -83,6 +96,7 @@ export function generateFormationPositions(
         x: direction * xNorm * halfWidth,
         y: yNorm * halfHeight,
         role: "OUTFIELD",
+        zone: getZone("OUTFIELD", lineIndex, parsed.lines.length),
         lineIndex,
         playerIndex,
       });

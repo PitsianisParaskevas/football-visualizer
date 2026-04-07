@@ -22,10 +22,13 @@ export interface FormationLayoutOptions {
   allowIncomplete?: boolean;
 }
 
+export type FormationZone = "goalkeeper" | "defense" | "midfield" | "attack";
+
 export interface GeneratedPlayerPosition {
   x: number;
   y: number;
   role: "GK" | "OUTFIELD";
+  zone: FormationZone;
   lineIndex: number;
   playerIndex: number;
 }

@@ -1,7 +1,7 @@
-// src/library/components/Pitch/FormationLayer.tsx
 import { generateFormationPositions } from "../../core/formations/formationEngine";
 import type {
   FormationLayoutOptions,
+  FormationZone,
   PitchDimensions,
   TeamSide,
 } from "../../core/formations/formationTypes";
@@ -14,7 +14,15 @@ export interface FormationLayerProps {
   pitch?: PitchDimensions;
   layout?: FormationLayoutOptions;
   markerRadius?: number;
+  visibleZones?: FormationZone[];
 }
+
+const DEFAULT_VISIBLE_ZONES: FormationZone[] = [
+  "goalkeeper",
+  "defense",
+  "midfield",
+  "attack",
+];
 
 export function FormationLayer({
   formation,
@@ -23,14 +31,19 @@ export function FormationLayer({
   pitch = { width: 105, height: 68 },
   layout,
   markerRadius = 0.9,
+  visibleZones = DEFAULT_VISIBLE_ZONES,
 }: FormationLayerProps) {
   const players = generateFormationPositions(formation, pitch, side, layout);
 
+  const filteredPlayers = players.filter((player) =>
+    visibleZones.includes(player.zone),
+  );
+
   return (
     <g data-layer="formation">
-      {players.map((player, index) => (
+      {filteredPlayers.map((player, index) => (
         <PlayerMarker
-          key={`${formation}-${side}-${index}`}
+          key={`${formation}-${side}-${player.zone}-${player.lineIndex}-${player.playerIndex}-${index}`}
           x={player.x}
           y={player.y}
           color={color}
