@@ -13,3 +13,11 @@ export type {
   GeneratedPlayerPosition,
   FormationZone,
 } from "./formations/formationTypes";
+
+export { normalizeHeatmapPoints } from "./heatmap/normalizeHeatmapPoints";
+
+export type {
+  HeatPoint,
+  HeatmapCoordinateSystem,
+  NormalizeHeatmapPointsOptions,
+} from "./heatmap/heatmapTypes";

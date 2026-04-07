@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import HomePage from "@/pages/HomePage";
 import PitchPage from "@/pages/PitchPage";
 import FormationPage from "@/pages/FormationPage";
+import HeatmapLayerPage from "@/pages/HeatmapLayerPage";
 
 export function AppRouter() {
   return (
@@ -12,6 +13,7 @@ export function AppRouter() {
         <Route path="/" element={<HomePage />} />
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/formation" element={<FormationPage />} />
+        <Route path="/heatmap" element={<HeatmapLayerPage />} />
       </Route>
     </Routes>
   );
