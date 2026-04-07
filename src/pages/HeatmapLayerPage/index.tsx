@@ -7,7 +7,7 @@ export default function HeatmapLayerPage() {
       <div>
         <h1 className="text-2xl font-semibold text-zinc-900">Heatmap Layer</h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Demo page for the first heatmap layer using raw x/y event data.
+          Demo page for the heatmap layer using raw event coordinates.
         </p>
       </div>
 
@@ -17,10 +17,12 @@ export default function HeatmapLayerPage() {
             <Pitch>
               <HeatmapLayer
                 points={heatmapData}
-                color="#ff0000"
-                radius={6}
-                opacity={0.9}
-                blur={0}
+                coordinateSystem="percent"
+                color="#ffd33d"
+                radius={2.8}
+                opacity={1}
+                blur={1}
+                kernelRadius={9}
               />
             </Pitch>
           </div>

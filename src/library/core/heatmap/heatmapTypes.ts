@@ -4,11 +4,10 @@ export interface HeatPoint {
   value?: number;
 }
 
-export type HeatmapCoordinateSystem = "centered" | "pitch" | "percent";
+export type HeatmapCoordinateSystem = "centered" | "percent" | "pitch";
 
 export interface NormalizeHeatmapPointsOptions {
   coordinateSystem?: HeatmapCoordinateSystem;
   pitchWidth?: number;
   pitchHeight?: number;
-  excludeOrigin?: boolean;
 }
